@@ -1,0 +1,431 @@
+// @import "reset";
+// 一些通用颜色，自行配置
+$color: #3F65FF;
+$active_color: #3455DA;
+$color_red: #F5716F;
+$border_color: #999;
+
+/* 超出部分出省略号 */
+@mixin text-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* 多行文本超出部分省略号 */
+@mixin ellipsis-line ($line: 2) {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+// 二次封装弹窗使用到的样式
+.msg-alert-style,
+.msg-box-style {
+    border: none !important;
+    /deep/ .el-message-box__header {
+        padding: 0 !important;
+        height: 40px;
+        background-color: $color;
+    }
+    /deep/ .el-message-box__title {
+        color: #fff;
+        line-height: 40px;
+        font-size: 16px;
+        justify-content: flex-start !important;
+        padding-left: 20px;
+    }
+    /deep/ .el-message-box__content {
+        padding: 25px;
+        color: #666;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    button {
+        padding: 0;
+        border-color: $color !important;
+        color: $color !important;
+    }
+    /deep/ .el-button {
+        width: 108px;
+        height: 36px;
+    }
+    /deep/ .el-button--primary {
+        color: #fff !important;
+    }
+    button+button {
+        margin-left: 60px !important;
+    }
+    /deep/ .el-message-box__headerbtn {
+        top: 11px;
+        right: 12px;
+        &:hover {
+            i {
+                color: #fff !important;
+            }
+        }
+        i {
+            color: #fff;
+            font-size: 20px;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}
+
+/deep/ .el-dialog__title {
+    line-height: 40px;
+    color: #fff;
+}
+/deep/ .el-dialog__headerbtn {
+    top: 12px;
+    right: 12px;
+    &:hover {
+        i {
+            color: #fff !important;
+        }
+    }
+    i {
+        color: #fff;
+        font-size: 20px;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+// el默认按钮样式
+.el-button--default {
+    border-color: $color;
+    color: $color;
+}
+
+// 筛选框样式
+.search-list {
+    display: flex;
+    align-items: center;
+    .search-item-title {
+        color: #111;
+        font-size: 16px;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+    .search-item-wrap {
+        display: flex;
+        align-items: center;
+    }
+    .search-item {
+        display: flex;
+        align-items: center;
+        &:not(:last-child) {
+            margin-right: 40px;
+        }
+        .search-title {
+            font-size: 14px;
+            color: #333;
+            padding-right: 20px;
+        }
+        .el-select {
+            width: 300px;
+            box-sizing: border-box;
+        }
+        .el-input__inner {
+            height: 36px;
+            line-height: 36px;
+            border-color: $border_color;
+        }
+    }
+}
+
+// 输入框类
+/deep/ .el-input__inner {
+    height: 36px;
+    line-height: 36px;
+    box-sizing: border-box;
+    border-color: $border_color !important;
+    &:focus {
+        border-color: $color !important;
+    }
+    &:focus-within {
+        border-color: $color !important;
+    }
+}
+
+/deep/ .el-textarea__inner {
+    border-color: $border_color !important;
+    &:focus {
+        border-color: $color !important;
+    }
+    &:focus-within {
+        border-color: $color !important;
+    }
+}
+
+// 时间选择框
+/deep/ .el-date-editor {
+    .el-input__prefix {
+        left: calc(100% - 30px);
+    }
+    .el-input__inner {
+        padding-left: 10px;
+        &:focus {
+            border-color: $color !important;
+        }
+    }
+    .el-input__suffix {
+        right: 30px;
+    }
+}
+
+.white-box {
+    padding: 0 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.padding-align-40 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.padding-align-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-bottom-40 {
+    padding-bottom: 40px;
+}
+
+// 一些边距
+.m-top-33 {
+    margin-top: 33px;
+}
+
+.m-top-40 {
+    margin-top: 40px;
+}
+
+// 返回上一页按钮
+.back-btn {
+    width: 300px;
+    height: 36px;
+    padding: 0;
+}
+
+// el-table
+.normal-table {
+    th.is-leaf {
+        border-bottom: 2px solid $color !important;
+    }
+    .el-table__header {
+        th:not(:first-child) {
+            text-align: center;
+        }
+        .cell {
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        th {
+            padding: 20px 0;
+        }
+    }
+    .el-table__body {
+        td:not(:first-child) {
+            text-align: center;
+        }
+        .cell {
+            color: #666;
+            font-size: 14px;
+        }
+        th {
+            padding: 15px 0;
+        }
+    }
+    .table-handle {
+        span {
+            color: $color;
+            font-size: 14px;
+            cursor: pointer;
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+    }
+}
+.normal-table-default {
+    th.is-leaf {
+        border-bottom: 2px solid $color !important;
+    }
+    .el-table__header {
+        th:not(:first-child) {
+            text-align: center;
+        }
+        .cell {
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        th {
+            padding: 20px 0;
+        }
+        th:first-child {
+            padding-left: 50px;
+        }
+    }
+    .el-table__body {
+        td:not(:first-child) {
+            text-align: center;
+        }
+        .cell {
+            color: #666;
+            font-size: 14px;
+        }
+        th {
+            padding: 15px 0;
+        }
+    }
+    .table-default-text {
+        display: inline-block;
+        width: 50px;
+        font-size: 14px;
+        color: $color;
+    }
+    .table-handle {
+        span {
+            color: $color;
+            font-size: 14px;
+            cursor: pointer;
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+    }
+    .table-item-active {
+        background-color: #f6f6f6;
+    }
+}
+
+// el-form
+/deep/ .el-form-item__label {
+    font-size: 16px;
+    color: #333;
+    padding-right: 40px;
+}
+
+// el-radio
+/deep/ .el-radio__inner {
+    border-radius: 0;
+    width: 16px;
+    height: 16px;
+    border-color: $color;
+    &::after {
+        width: 10px;
+        height: 10px;
+        border-radius: 0;
+        background-color: $color;
+        border: none;
+    }
+}
+/deep/ .el-radio__label {
+    margin-top: 3px;
+}
+/deep/ .el-radio__input.is-checked  {
+    .el-radio__inner {
+        background-color: #fff;
+    }
+}
+
+// el-checkbox
+/deep/ .el-checkbox__inner {
+    border-radius: 0;
+    width: 16px;
+    height: 16px;
+    border-color: $color;
+    &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 0;
+        background-color: $color;
+        border: none;
+        transform: none;
+        top: 2px;
+        left: 2px;
+        background-color: #fff;
+    }
+}
+/deep/ .el-checkbox__input.is-checked  {
+    .el-checkbox__inner {
+        background-color: #fff;
+        &::after {
+            background-color: $color;
+            transform: none;
+        }
+    }
+}
+
+.scroll-y-style {
+    &::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    &::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+        background: #f7f7f7;
+    }
+}
+
+// 右侧区域样式，使白底内容充满屏幕，一些美化吧
+.right-box-along {
+    min-height: calc(100vh - 155px);
+    box-sizing: border-box;
+}
+
+// 自定义输入框
+.lawrence-ipt {
+    box-sizing: border-box;
+    width: 130px;
+    height: 36px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    &:focus {
+        border-color: $color;
+    }
+}
+.lawrence-ipt::-webkit-input-placeholder {
+    color: rgb(204, 203, 203);
+}
+
+// 详情不同状态值样式
+.status-text-success {
+    font-size: 30px;
+    line-height: 30px;
+    color: #3BD97D !important;
+}
+.status-text-warning {
+    font-size: 30px;
+    line-height: 30px;
+    color: #FFC471 !important;
+}
+.status-text-error {
+    font-size: 30px;
+    line-height: 30px;
+    color: #F5726F !important;
+}
+
+// table文字不同状态颜色
+.table-text-red {
+    color: #F5726F;
+}
+.table-text-green {
+    color: #3BD97D;
+}
